@@ -1,0 +1,75 @@
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+</head>
+
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    What's the weather like in {{city_weather.city}}?
+                </h1>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="http://openweathermap.org/img/w/{{city_weather.icon}}.png" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <span class="title">{{city_weather.city}}</span>
+                                        &nbsp; ({{city_weather.country}})
+                                        <br>
+                                        <span class="subtitle">{{city_weather.temp}}° C</span>
+                                        <hr>
+                                        <p>{{city_weather.weather}}</p>
+                                        {{city_weather.weather_description}}
+                                        <hr>
+                                        <p>Feels Like : {{city_weather.temp_feel}}° C</p>
+                                        <p>Minimum : {{city_weather.min_temp}}° C</p>
+                                        <p>Maximum : {{city_weather.max_temp}}° C</p>
+                                        <hr>
+                                        <p>Humidity : {{city_weather.humidity}}%</p>
+                                        <p>Air Pressure : {{city_weather.pressure}} hPa</p>
+                                        <p>Visibility : {{city_weather.visibility|visibility}} km</p>
+                                        <hr>
+                                        <p>Wind Speed : {{city_weather.wind.speed|wind_speed}}</p>
+                                        <p>Gust : {{city_weather.wind.gust|wind_speed}}</p>
+                                        <p>Direction : {{city_weather.wind.direction|wind_direction}}</p>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-right">
+                                <a href="{% url 'delete_city' city=city_weather.city %}">
+                                    <button class="delete"></button>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    </footer>
+</body>
+
+</html>
